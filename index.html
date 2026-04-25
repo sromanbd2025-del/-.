@@ -1,86 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<title>Bangla View Zone</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangla View Zone - Live TV</title>
+    <style>
+        body { background-color: #000; color: white; font-family: sans-serif; margin: 0; padding: 0; }
+        
+        /* ভিডিও প্লেয়ার এরিয়া */
+        .player-container { width: 100%; max-width: 800px; margin: 20px auto; background: #111; border: 2px solid red; aspect-ratio: 16/9; }
+        iframe { width: 100%; height: 100%; border: none; }
 
-<script src="admin-data.js"></script>
+        /* চ্যানেল গ্রিড সেটআপ */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
 
-<style>
-body{
-margin:0;
-background:#111;
-font-family:sans-serif;
-color:white;
-}
+        /* প্রতিটি চ্যানেলের বক্স */
+        .channel-card {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
 
-/* Player */
-.player iframe{
-width:100%;
-height:220px;
-border:none;
-}
+        .channel-card:hover { border-color: #00ff00; transform: scale(1.05); }
 
-/* Grid */
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-padding:10px;
-}
-
-.card{
-background:#fff;
-border-radius:15px;
-text-align:center;
-padding:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
-cursor:pointer;
-}
-
-.card img{
-width:70px;
-height:70px;
-object-fit:contain;
-}
-
-.card p{
-color:#000;
-font-size:12px;
-margin:5px 0 0;
-}
-</style>
-
+        .channel-card img { width: 100%; height: 60px; object-fit: contain; }
+        
+        .header { background: #1a1a1a; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; color: #ff0000; }
+    </style>
 </head>
-
 <body>
 
-<div class="player">
-<iframe id="player"></iframe>
-</div>
+    <div class="header">📺 Bangla View Zone</div>
 
-<div class="grid" id="list"></div>
+    <div class="player-container">
+        <iframe id="main-player" src="https://www.youtube.com/embed/LIVE_ID_HERE" allowfullscreen></iframe>
+    </div>
 
-<script>
+    <div class="grid-container">
+        
+        <div class="channel-card" onclick="changeVideo('https://www.youtube.com/embed/5m6V8Vp9nrc')">
+            <img src="https://upload.wikimedia.org/wikipedia/en/2/26/Somoy_TV_logo.png" alt="Somoy">
+            <p style="color: black; font-size: 12px; margin: 5px 0 0;">Somoy TV</p>
+        </div>
 
-function play(link){
-document.getElementById("player").src = link;
-}
+        <div class="channel-card" onclick="changeVideo('https://www.youtube.com/embed/XmG_WpXInoM')">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Jamuna_TV_logo.png/200px-Jamuna_TV_logo.png" alt="Jamuna">
+            <p style="color: black; font-size: 12px; margin: 5px 0 0;">Jamuna TV</p>
+        </div>
 
-let html="";
+        <div class="channel-card" onclick="changeVideo('https://www.youtube.com/embed/TSPORTS_LIVE_ID')">
+            <img src="https://upload.wikimedia.org/wikipedia/en/c/c5/T_Sports_logo.png" alt="T Sports">
+            <p style="color: black; font-size: 12px; margin: 5px 0 0;">T Sports</p>
+        </div>
 
-channels.forEach(c=>{
-html+=`
-<div class="card" onclick="play('${c.link}')">
-<img src="${c.img}">
-<p>${c.name}</p>
-</div>
-`;
-});
+    </div>
 
-document.getElementById("list").innerHTML=html;
-
-</script>
+    <script>
+        // এই ফাংশনটি ক্লিক করলে ভিডিও বদলে দেবে
+        function changeVideo(url) {
+            document.getElementById('main-player').src = url;
+        }
+    </script>
 
 </body>
 </html>
