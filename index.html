@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bangla View Zone</title>
+
 <script src="admin-data.js"></script>
+
+<style>
+body{
+margin:0;
+background:#111;
+font-family:sans-serif;
+color:white;
+}
+
+/* Player */
+.player iframe{
+width:100%;
+height:220px;
+border:none;
+}
+
+/* Grid */
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+padding:10px;
+}
+
+.card{
+background:#fff;
+border-radius:15px;
+text-align:center;
+padding:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+cursor:pointer;
+}
+
+.card img{
+width:70px;
+height:70px;
+object-fit:contain;
+}
+
+.card p{
+color:#000;
+font-size:12px;
+margin:5px 0 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="player">
+<iframe id="player"></iframe>
+</div>
+
+<div class="grid" id="list"></div>
+
+<script>
+
+function play(link){
+document.getElementById("player").src = link;
+}
+
+let html="";
+
+channels.forEach(c=>{
+html+=`
+<div class="card" onclick="play('${c.link}')">
+<img src="${c.img}">
+<p>${c.name}</p>
+</div>
+`;
+});
+
+document.getElementById("list").innerHTML=html;
+
+</script>
+
+</body>
+</html>
