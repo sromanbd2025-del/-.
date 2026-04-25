@@ -4,99 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bangla View Zone - Live TV</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <style>
-        body { background-color: #0c0c0c; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-        
-        /* হেডার স্টাইল */
-        .header { background: #1a1a1a; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; border-bottom: 3px solid #ff0000; }
-
-        /* ভিডিও প্লেয়ার স্টাইল */
-        .player-container { width: 100%; max-width: 900px; margin: 20px auto; background: #000; border: 1px solid #333; box-shadow: 0px 0px 20px rgba(255,0,0,0.2); aspect-ratio: 16/9; }
-        iframe { width: 100%; height: 100%; border: none; }
-
-        /* চ্যানেল গ্রিড (২ নং ছবির মতো) */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* চ্যানেল কার্ড স্টাইল */
-        .channel-card {
-            background: white;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-
+        body { background-color: #0c0c0c; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        .header { background: #1a1a1a; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; border-bottom: 3px solid #ff0000; color: #fff; box-shadow: 0 2px 10px rgba(255,0,0,0.5); }
+        .player-container { width: 100%; max-width: 900px; margin: 20px auto; background: #000; aspect-ratio: 16/9; box-shadow: 0 0 20px rgba(255,0,0,0.3); }
+        .video-js, iframe { width: 100% !important; height: 100% !important; border: none; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; padding: 20px; max-width: 1100px; margin: 0 auto; }
+        .channel-card { background: white; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; transition: 0.3s; border: 2px solid #ddd; }
         .channel-card:hover { border-color: #ff0000; transform: translateY(-5px); }
         .channel-card img { width: 100%; height: 60px; object-fit: contain; }
-        .channel-card p { color: #333; font-size: 12px; margin: 8px 0 0; font-weight: bold; }
+        .channel-card p { color: #333; font-size: 11px; margin: 8px 0 0; font-weight: bold; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-    <div class="header">📺 Bangla View Zone - Live TV</div>
+    <div class="header">📺 BANGLA VIEW ZONE - LIVE TV</div>
 
     <div class="player-container">
-        <iframe id="main-player" src="https://www.youtube.com/embed/5m6V8Vp9nrc" allowfullscreen></iframe>
+        <iframe id="yt-player" src="https://www.youtube.com/embed/live_stream?channel=UC_u6v2At6p3-w8YvT2Zpndw" allowfullscreen></iframe>
+        <video id="iptv-player" class="video-js vjs-default-skin hidden" controls preload="auto" data-setup='{}'></video>
     </div>
 
-    <div class="grid-container">
-        
-        <div class="channel-card" onclick="changeVideo('ইউটিউব_লিঙ্ক_১')">
-            <img src="লোগো_লিঙ্ক_১" alt="Channel 1">
-            <p>সময় টিভি</p>
-        </div>
-
-        <div class="channel-card" onclick="changeVideo('ইউটিউব_লিঙ্ক_২')">
-            <img src="লোগো_লিঙ্ক_২" alt="Channel 2">
-            <p>যমুনা টিভি</p>
-        </div>
-
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৩')"><img src="লোগো_৩"><p>চ্যানেল ৩</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৪')"><img src="লোগো_৪"><p>চ্যানেল ৪</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৫')"><img src="লোগো_৫"><p>চ্যানেল ৫</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৬')"><img src="লোগো_৬"><p>চ্যানেল ৬</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৭')"><img src="লোগো_৭"><p>চ্যানেল ৭</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৮')"><img src="লোগো_৮"><p>চ্যানেল ৮</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৯')"><img src="লোগো_৯"><p>চ্যানেল ৯</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১০')"><img src="লোগো_১০"><p>চ্যানেল ১০</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১১')"><img src="লোগো_১১"><p>চ্যানেল ১১</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১২')"><img src="লোগো_১২"><p>চ্যানেল ১২</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৩')"><img src="লোগো_১৩"><p>চ্যানেল ১৩</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৪')"><img src="লোগো_১৪"><p>চ্যানেল ১৪</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৫')"><img src="লোগো_১৫"><p>চ্যানেল ১৫</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৬')"><img src="লোগো_১৬"><p>চ্যানেল ১৬</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৭')"><img src="লোগো_১৭"><p>চ্যানেল ১৭</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৮')"><img src="লোগো_১৮"><p>চ্যানেল ১৮</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৯')"><img src="লোগো_১৯"><p>চ্যানেল ১৯</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২০')"><img src="লোগো_২০"><p>চ্যানেল ২০</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২১')"><img src="লোগো_২১"><p>চ্যানেল ২১</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২২')"><img src="লোগো_২২"><p>চ্যানেল ২২</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২৩')"><img src="লোগো_২৩"><p>চ্যানেল ২৩</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২৪')"><img src="লোগো_২৪"><p>চ্যানেল ২৪</p></div>
-        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২৫')"><img src="লোগো_২৫"><p>চ্যানেল ২৫</p></div>
-
-    </div>
+    <div class="grid-container" id="channel-grid"></div>
 
     <script>
-        // এই ফাংশনটি দিয়ে ভিডিও পরিবর্তন হবে
-        function changeVideo(url) {
-            if(url.includes('youtube.com') || url.includes('embed')) {
-                document.getElementById('main-player').src = url;
-            } else {
-                alert("দয়া করে সঠিক ইউটিউব এমবেড লিঙ্ক দিন।");
-            }
-        }
-    </script>
+        const channels = [
+            // NEWS CHANNELS (Fixed YouTube Live)
+            { name: "Jamuna TV", img: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Jamuna_TV_logo.png/200px-Jamuna_TV_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UC_u6v2At6p3-w8YvT2Zpndw", type: "yt" },
+            { name: "Somoy TV", img: "https://upload.wikimedia.org/wikipedia/en/2/26/Somoy_TV_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCIsP6W279isZAsD_CAdWOTw", type: "yt" },
+            { name: "Channel 24", img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Channel_24_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCXvL_n_6UunYvO0Y9B8A88g", type: "yt" },
+            { name: "Ekattor TV", img: "https://upload.wikimedia.org/wikipedia/en/c/c3/Ekattor_TV_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCd7N7G7_A2YOfpYp-7uK3kg", type: "yt" },
+            { name: "Independent", img: "https://upload.wikimedia.org/wikipedia/en/0/05/Independent_Television_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCpP0S9N-uS7M9y8v_K6v4tQ", type: "yt" },
+            { name: "News 24", img: "https://upload.wikimedia.org/wikipedia/en/2/21/News24_Bangladesh_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCG_UshSOn0HCHV_0q8X7Wdg", type: "yt" },
+            { name: "DBC News", img: "https://upload.wikimedia.org/wikipedia/en/b/b3/DBC_News_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UC3-C7oKNoX7vD9pWl_3X5_A", type: "yt" },
+            { name: "BTV", img: "https://upload.wikimedia.org/wikipedia/en/8/8e/BTV_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCf0fD3hD39Y10f_yXp0n_3A", type: "yt" },
+            
+            // SPORTS (m3u8 Format - placeholder links)
+            { name: "T Sports", img: "https://upload.wikimedia.org/wikipedia/en/c/c5/T_Sports_logo.png", url: "https://livesim.dashif.org/livesim/testpic_2s/Manifest.m3u8", type: "m3u" },
+            { name: "Star Sports 1", img: "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Star_Sports_logo.svg/200px-Star_Sports_logo.svg.png", url: "https://livesim.dashif.org/livesim/testpic_2s/Manifest.m3u8", type: "m3u" },
+            { name: "A Sports", img: "https://upload.wikimedia.org/wikipedia/en/1/13/A_Sports_logo.png", url: "https://livesim.dashif.org/livesim/testpic_2s/Manifest.m3u8", type: "m3u" },
+            { name: "Bein Sports", img: "https://upload.wikimedia.org/wikipedia/commons/3/30/BeIN_Sports_logo.svg", url: "https://livesim.dashif.org/livesim/testpic_2s/Manifest.m3u8", type: "m3u" },
+            { name: "ESPN", img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/ESPN_logo.svg", url: "https://livesim.dashif.org/livesim/testpic_2s/Manifest.m3u8", type: "m3u" },
 
+            // ENTERTAINMENT
+            { name: "NTV", img: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/NTV_Bangladesh_Logo.png/250px-NTV_Bangladesh_Logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCPn6l09_pXpL4_4hXF6XlJQ", type: "yt" },
+            { name: "Deepto TV", img: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Deepto_TV_logo.png/200px-Deepto_TV_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UC4pA57I6W_L972r7_H0Xv8w", type: "yt" },
+            { name: "Star Jalsha", img: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Star_Jalsha_logo.png/150px-Star_Jalsha_logo.png", url: "https://www.youtube.com/embed/embed/LIVE_ID", type: "yt" },
+            { name: "Zee Bangla", img: "https://upload.wikimedia.org/wikipedia/en/thumb/2/25/Zee_Bangla_2017_Logo.png/150px-Zee_Bangla_2017_Logo.png", url: "https://www.youtube.com/embed/LIVE_ID", type: "yt" },
+            { name: "Islamic TV", img: "https://via.placeholder.com/100?text=IslamicTV", url: "https://www.youtube.com/embed/live_stream?channel=UC_uVp9iG0xT5-J0G8nO7S5g", type: "yt" },
+            { name: "Peace TV", img: "https://upload.wikimedia.org/wikipedia/en/1/1a/Peace_TV_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UCpP0S9N-uS7M9y8v_K6v4tQ", type: "yt" },
+            { name: "Nagorik TV", img: "https://upload.wikimedia.org/wikipedia/en/c/cc/Nagorik_TV_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UC62A7fM6j6H6f_IuS_v1aGg", type: "yt" },
+            { name: "Channel I", img: "https://upload.wikimedia.org/wikipedia/en/3/3d/Channel_i_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UC9jA_yIqT9_A4qB0-uYv87Q", type: "yt" },
+            { name: "Zoom", img: "https://via.placeholder.com/100?text=Zoom", url: "https://www.youtube.com/embed/LIVE_ID", type: "yt" },
+            { name: "S Bangla", img: "https://via.placeholder.com/100?text=SBangla", url: "https://www.youtube.com/embed/LIVE_ID", type: "yt" },
+            { name: "ATN BD", img: "https://via.placeholder.com/100?text=ATN", url: "https://www.youtube.com/embed/live_stream?channel=UCnN3_vLUpqfT7yK6R-1u2-A", type: "yt" },
+            { name: "Maasranga", img: "https://upload.wikimedia.org/wikipedia/en/c/c8/Maasranga_Television_logo.png", url: "https://www.youtube.com/embed/live_stream?channel=UC86V9mG32I8mO6pP-7C7X4w", type: "yt" }
+        ];
+
+        const grid = document.getElementById('channel-grid');
+        const ytPlayer = document.getElementById('yt-player');
+        const iptvPlayerObj = videojs('iptv-player');
+        const iptvElement = document.getElementById('iptv-player');
+
+        channels.forEach(ch => {
+            const card = document.createElement('div');
+            card.className = 'channel-card';
+            card.innerHTML = `<img src="${ch.img}"><p>${ch.name}</p>`;
+            card.onclick = () => {
+                if(ch.type === "yt") {
+                    iptvElement.classList.add('hidden');
+                    ytPlayer.classList.remove('hidden');
+                    ytPlayer.src = ch.url;
+                    iptvPlayerObj.pause();
+                } else {
+                    ytPlayer.classList.add('hidden');
+                    iptvElement.classList.remove('hidden');
+                    iptvPlayerObj.src({ src: ch.url, type: 'application/x-mpegURL' });
+                    iptvPlayerObj.play();
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            grid.appendChild(card);
+        });
+    </script>
 </body>
 </html>
