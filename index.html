@@ -5,69 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bangla View Zone - Live TV</title>
     <style>
-        body { background-color: #000; color: white; font-family: sans-serif; margin: 0; padding: 0; }
+        body { background-color: #0c0c0c; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
         
-        /* ভিডিও প্লেয়ার এরিয়া */
-        .player-container { width: 100%; max-width: 800px; margin: 20px auto; background: #111; border: 2px solid red; aspect-ratio: 16/9; }
+        /* হেডার স্টাইল */
+        .header { background: #1a1a1a; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; border-bottom: 3px solid #ff0000; }
+
+        /* ভিডিও প্লেয়ার স্টাইল */
+        .player-container { width: 100%; max-width: 900px; margin: 20px auto; background: #000; border: 1px solid #333; box-shadow: 0px 0px 20px rgba(255,0,0,0.2); aspect-ratio: 16/9; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* চ্যানেল গ্রিড সেটআপ */
+        /* চ্যানেল গ্রিড (২ নং ছবির মতো) */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* প্রতিটি চ্যানেলের বক্স */
+        /* চ্যানেল কার্ড স্টাইল */
         .channel-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             padding: 10px;
             text-align: center;
             cursor: pointer;
-            transition: 0.3s;
+            transition: transform 0.2s, border-color 0.2s;
             border: 2px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        .channel-card:hover { border-color: #00ff00; transform: scale(1.05); }
-
+        .channel-card:hover { border-color: #ff0000; transform: translateY(-5px); }
         .channel-card img { width: 100%; height: 60px; object-fit: contain; }
-        
-        .header { background: #1a1a1a; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; color: #ff0000; }
+        .channel-card p { color: #333; font-size: 12px; margin: 8px 0 0; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="header">📺 Bangla View Zone</div>
+    <div class="header">📺 Bangla View Zone - Live TV</div>
 
     <div class="player-container">
-        <iframe id="main-player" src="https://www.youtube.com/embed/LIVE_ID_HERE" allowfullscreen></iframe>
+        <iframe id="main-player" src="https://www.youtube.com/embed/5m6V8Vp9nrc" allowfullscreen></iframe>
     </div>
 
     <div class="grid-container">
         
-        <div class="channel-card" onclick="changeVideo('https://www.youtube.com/embed/5m6V8Vp9nrc')">
-            <img src="https://upload.wikimedia.org/wikipedia/en/2/26/Somoy_TV_logo.png" alt="Somoy">
-            <p style="color: black; font-size: 12px; margin: 5px 0 0;">Somoy TV</p>
+        <div class="channel-card" onclick="changeVideo('ইউটিউব_লিঙ্ক_১')">
+            <img src="লোগো_লিঙ্ক_১" alt="Channel 1">
+            <p>সময় টিভি</p>
         </div>
 
-        <div class="channel-card" onclick="changeVideo('https://www.youtube.com/embed/XmG_WpXInoM')">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Jamuna_TV_logo.png/200px-Jamuna_TV_logo.png" alt="Jamuna">
-            <p style="color: black; font-size: 12px; margin: 5px 0 0;">Jamuna TV</p>
+        <div class="channel-card" onclick="changeVideo('ইউটিউব_লিঙ্ক_২')">
+            <img src="লোগো_লিঙ্ক_২" alt="Channel 2">
+            <p>যমুনা টিভি</p>
         </div>
 
-        <div class="channel-card" onclick="changeVideo('https://www.youtube.com/embed/TSPORTS_LIVE_ID')">
-            <img src="https://upload.wikimedia.org/wikipedia/en/c/c5/T_Sports_logo.png" alt="T Sports">
-            <p style="color: black; font-size: 12px; margin: 5px 0 0;">T Sports</p>
-        </div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৩')"><img src="লোগো_৩"><p>চ্যানেল ৩</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৪')"><img src="লোগো_৪"><p>চ্যানেল ৪</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৫')"><img src="লোগো_৫"><p>চ্যানেল ৫</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৬')"><img src="লোগো_৬"><p>চ্যানেল ৬</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৭')"><img src="লোগো_৭"><p>চ্যানেল ৭</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৮')"><img src="লোগো_৮"><p>চ্যানেল ৮</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_৯')"><img src="লোগো_৯"><p>চ্যানেল ৯</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১০')"><img src="লোগো_১০"><p>চ্যানেল ১০</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১১')"><img src="লোগো_১১"><p>চ্যানেল ১১</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১২')"><img src="লোগো_১২"><p>চ্যানেল ১২</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৩')"><img src="লোগো_১৩"><p>চ্যানেল ১৩</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৪')"><img src="লোগো_১৪"><p>চ্যানেল ১৪</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৫')"><img src="লোগো_১৫"><p>চ্যানেল ১৫</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৬')"><img src="লোগো_১৬"><p>চ্যানেল ১৬</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৭')"><img src="লোগো_১৭"><p>চ্যানেল ১৭</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৮')"><img src="লোগো_১৮"><p>চ্যানেল ১৮</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_১৯')"><img src="লোগো_১৯"><p>চ্যানেল ১৯</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২০')"><img src="লোগো_২০"><p>চ্যানেল ২০</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২১')"><img src="লোগো_২১"><p>চ্যানেল ২১</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২২')"><img src="লোগো_২২"><p>চ্যানেল ২২</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২৩')"><img src="লোগো_২৩"><p>চ্যানেল ২৩</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২৪')"><img src="লোগো_২৪"><p>চ্যানেল ২৪</p></div>
+        <div class="channel-card" onclick="changeVideo('লিঙ্ক_২৫')"><img src="লোগো_২৫"><p>চ্যানেল ২৫</p></div>
 
     </div>
 
     <script>
-        // এই ফাংশনটি ক্লিক করলে ভিডিও বদলে দেবে
+        // এই ফাংশনটি দিয়ে ভিডিও পরিবর্তন হবে
         function changeVideo(url) {
-            document.getElementById('main-player').src = url;
+            if(url.includes('youtube.com') || url.includes('embed')) {
+                document.getElementById('main-player').src = url;
+            } else {
+                alert("দয়া করে সঠিক ইউটিউব এমবেড লিঙ্ক দিন।");
+            }
         }
     </script>
 
