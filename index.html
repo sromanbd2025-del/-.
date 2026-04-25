@@ -3,111 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <title>Bangla View Zone</title>
-
-<!-- admin-data.js connect -->
 <script src="admin-data.js"></script>
 
 <style>
 body{
-  margin:0;
-  font-family:sans-serif;
-  background:#0f2027;
-  color:white;
+margin:0;
+font-family:sans-serif;
+background:#0f172a;
+color:white;
 }
+
+/* Header */
 .header{
-  text-align:center;
-  padding:12px;
-  font-size:22px;
-  font-weight:bold;
+display:flex;
+justify-content:space-between;
+padding:10px;
+background:#020617;
 }
-.search{
-  padding:10px;
+.logo{
+font-size:20px;
+font-weight:bold;
 }
-.search input{
-  width:100%;
-  padding:10px;
-  border-radius:10px;
-  border:none;
+
+/* Banner */
+.banner{
+background:url('https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37');
+height:150px;
+background-size:cover;
+display:flex;
+align-items:center;
+padding:10px;
+font-size:18px;
 }
-.tabs{
-  display:flex;
-  gap:8px;
-  padding:10px;
-  overflow:auto;
+
+/* Category */
+.row{
+padding:10px;
 }
-.tab{
-  background:#203a43;
-  padding:8px 12px;
-  border-radius:20px;
-  cursor:pointer;
+.row h3{
+margin:5px;
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  padding:10px;
+
+/* Horizontal scroll */
+.scroll{
+display:flex;
+overflow-x:auto;
+gap:10px;
 }
+
 .card{
-  background:#203a43;
-  padding:10px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
+min-width:100px;
+background:#1e293b;
+padding:10px;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
 }
+
 .card img{
-  width:60px;
+width:60px;
 }
+
+/* Player */
 iframe{
-  width:100%;
-  height:220px;
-  border:none;
+width:100%;
+height:200px;
+border:none;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="header">📺 Bangla View Zone</div>
-
-<div class="search">
-<input type="text" placeholder="Search channel..." onkeyup="searchChannel(this.value)">
+<div class="header">
+<div class="logo">📺 Bangla View Zone</div>
 </div>
 
-<div class="tabs">
-<div class="tab" onclick="load('news')">📰 News</div>
-<div class="tab" onclick="load('sports')">⚽ Sports</div>
-<div class="tab" onclick="load('islamic')">🕌 Islamic</div>
-</div>
+<div class="banner">Watch Live TV Anytime</div>
 
 <iframe id="player"></iframe>
 
-<div id="list" class="grid"></div>
+<div class="row">
+<h3>📰 News</h3>
+<div class="scroll" id="news"></div>
+</div>
+
+<div class="row">
+<h3>⚽ Sports</h3>
+<div class="scroll" id="sports"></div>
+</div>
+
+<div class="row">
+<h3>🕌 Islamic</h3>
+<div class="scroll" id="islamic"></div>
+</div>
 
 <script>
 
 function play(link){
- document.getElementById("player").src = link;
+document.getElementById("player").src=link;
 }
 
-function load(cat){
- let html="";
- channels.filter(c=>c.cat==cat).forEach(c=>{
- html+=`<div class="card" onclick="play('${c.link}')">
- <img src="${c.img}"><br>${c.name}</div>`;
- });
- document.getElementById("list").innerHTML=html;
+function load(){
+["news","sports","islamic"].forEach(cat=>{
+let html="";
+channels.filter(c=>c.cat==cat).forEach(c=>{
+html+=`<div class="card" onclick="play('${c.link}')">
+<img src="${c.img}"><br>${c.name}</div>`;
+});
+document.getElementById(cat).innerHTML=html;
+});
 }
 
-function searchChannel(val){
- let html="";
- channels.filter(c=>c.name.toLowerCase().includes(val.toLowerCase()))
- .forEach(c=>{
- html+=`<div class="card" onclick="play('${c.link}')">
- <img src="${c.img}"><br>${c.name}</div>`;
- });
- document.getElementById("list").innerHTML=html;
-}
+load();
 
 </script>
 
