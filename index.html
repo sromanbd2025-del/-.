@@ -5,96 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bangla View Zone - Live TV</title>
     <style>
-        body { background-color: #0c0c0c; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-        .header { background: #1a1a1a; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; border-bottom: 3px solid #ff0000; color: #fff; box-shadow: 0 2px 15px rgba(255,0,0,0.5); }
+        body { background-color: #0c0c0c; color: white; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
         
-        /* ভিডিও প্লেয়ার এরিয়া */
-        .player-section { width: 100%; max-width: 900px; margin: 20px auto; background: #000; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 2px solid #333; box-shadow: 0 0 20px rgba(255,0,0,0.3); }
+        .header { background: #1a1a1a; padding: 20px; text-align: center; font-size: 26px; font-weight: bold; border-bottom: 4px solid #ff0000; color: #fff; box-shadow: 0 4px 15px rgba(255,0,0,0.5); }
+
+        /* ভিডিও প্লেয়ার */
+        .player-section { width: 95%; max-width: 900px; margin: 20px auto; background: #000; aspect-ratio: 16/9; border-radius: 15px; overflow: hidden; border: 2px solid #444; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* ২৫টি চ্যানেলের গ্রিড */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; padding: 25px; max-width: 1200px; margin: 0 auto; }
+        /* অ্যাডভার্টাইজমেন্ট সেকশন */
+        .ad-space { width: 95%; max-width: 900px; height: 100px; margin: 15px auto; background: #222; border: 2px dashed #ff0; display: flex; align-items: center; justify-content: center; color: #ff0; font-weight: bold; border-radius: 10px; }
 
-        /* আপনার পছন্দের ইউনিক পপ-আপ কার্ড ডিজাইন */
+        /* ক্যাটাগরি স্টাইল */
+        .category-title { padding-left: 30px; margin-top: 30px; font-size: 24px; color: #ff0000; border-left: 5px solid #ff0000; text-transform: uppercase; }
+
+        /* গ্রিড কন্টেইনার */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; padding: 20px 30px; }
+
+        /* চ্যানেল বাটন ডিজাইন */
         .channel-card {
-            background: #ffffff; border-radius: 10px; padding: 10px;
-            text-align: center; cursor: pointer; transition: all 0.4s ease;
-            border: 3px solid transparent; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border-radius: 12px; padding: 20px 10px; text-align: center; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent; box-shadow: 0 6px 12px rgba(0,0,0,0.4);
         }
 
-        /* মাউস নিলে মাল্টিকালার পপ-আপ ইফেক্ট */
+        /* ইউনিক রেইনবো পপ-আপ */
         .channel-card:hover {
-            transform: scale(1.1) translateY(-8px);
-            animation: glowEffect 2s linear infinite;
+            transform: scale(1.1) translateY(-10px);
+            animation: rainbowGlow 1.5s linear infinite;
         }
 
-        @keyframes glowEffect {
-            0% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
-            25% { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
-            50% { border-color: #0000ff; box-shadow: 0 0 15px #0000ff; }
-            75% { border-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
-            100% { border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; }
+        @keyframes rainbowGlow {
+            0% { border-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+            33% { border-color: #00ff00; box-shadow: 0 0 20px #00ff00; }
+            66% { border-color: #0000ff; box-shadow: 0 0 20px #0000ff; }
+            100% { border-color: #ff00ff; box-shadow: 0 0 20px #ff00ff; }
         }
 
-        .channel-card img { width: 100%; height: 60px; object-fit: contain; }
-        .channel-card p { color: #333; font-size: 12px; margin: 8px 0 0; font-weight: bold; }
+        /* চ্যানেলের বড় টেক্সট */
+        .channel-card p { color: #000; font-size: 16px; margin: 0; font-weight: 900; word-wrap: break-word; }
+        .channel-card .logo-text { font-size: 22px; color: #ff0000; display: block; margin-bottom: 5px; }
+
     </style>
 </head>
 <body>
 
-    <div class="header">📺 BANGLA VIEW ZONE - LIVE</div>
+    <div class="header">📺 BANGLA VIEW ZONE - LIVE TV</div>
 
     <div class="player-section">
         <iframe id="tv-player" src="https://www.youtube.com/embed/live_stream?channel=UC_u6v2At6p3-w8YvT2Zpndw" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
-    <div class="grid-container" id="channel-grid"></div>
+    <div class="ad-space">
+        YOUR AD CODE HERE (এড বসানোর জায়গা)
+    </div>
+
+    <div class="category-title">News Channels (নিউজ)</div>
+    <div class="grid-container" id="news-grid"></div>
+
+    <div class="category-title">Entertainment (বিনোদন)</div>
+    <div class="grid-container" id="ent-grid"></div>
+
+    <div class="category-title">Sports (খেলাধুলা)</div>
+    <div class="grid-container" id="sports-grid"></div>
 
     <script>
-        // আপনার দেওয়া ২৫টি চ্যানেলের নিখুঁত ডাটাবেজ
-        const channelData = [
-            { name: "Jamuna TV", id: "UC_u6v2At6p3-w8YvT2Zpndw", img: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Jamuna_TV_logo.png/200px-Jamuna_TV_logo.png" },
-            { name: "Somoy TV", id: "UCIsP6W279isZAsD_CAdWOTw", img: "https://upload.wikimedia.org/wikipedia/en/2/26/Somoy_TV_logo.png" },
-            { name: "Channel 24", id: "UCXvL_n_6UunYvO0Y9B8A88g", img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Channel_24_logo.png" },
-            { name: "Ekattor TV", id: "UCd7N7G7_A2YOfpYp-7uK3kg", img: "https://upload.wikimedia.org/wikipedia/en/c/c3/Ekattor_TV_logo.png" },
-            { name: "Independent", id: "UCpP0S9N-uS7M9y8v_K6v4tQ", img: "https://upload.wikimedia.org/wikipedia/en/0/05/Independent_Television_logo.png" },
-            { name: "News 24", id: "UCG_UshSOn0HCHV_0q8X7Wdg", img: "https://upload.wikimedia.org/wikipedia/en/2/21/News24_Bangladesh_logo.png" },
-            { name: "DBC News", id: "UC3-C7oKNoX7vD9pWl_3X5_A", img: "https://upload.wikimedia.org/wikipedia/en/b/b3/DBC_News_logo.png" },
-            { name: "BTV", id: "UCf0fD3hD39Y10f_yXp0n_3A", img: "https://upload.wikimedia.org/wikipedia/en/8/8e/BTV_logo.png" },
-            { name: "T Sports", id: "UCv_v96YatZUpKqU7f0mO0_Q", img: "https://upload.wikimedia.org/wikipedia/en/c/c5/T_Sports_logo.png" },
-            { name: "ATN News", id: "UCnN3_vLUpqfT7yK6R-1u2-A", img: "https://upload.wikimedia.org/wikipedia/commons/e/ed/ATN_News_logo.png" },
-            { name: "NTV", id: "UCPn6l09_pXpL4_4hXF6XlJQ", img: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/NTV_Bangladesh_Logo.png/250px-NTV_Bangladesh_Logo.png" },
-            { name: "Channel I", id: "UC9jA_yIqT9_A4qB0-uYv87Q", img: "https://upload.wikimedia.org/wikipedia/en/3/3d/Channel_i_logo.png" },
-            { name: "Nagorik TV", id: "UC62A7fM6j6H6f_IuS_v1aGg", img: "https://upload.wikimedia.org/wikipedia/en/c/cc/Nagorik_TV_logo.png" },
-            { name: "Deepto TV", id: "UC4pA57I6W_L972r7_H0Xv8w", img: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Deepto_TV_logo.png/200px-Deepto_TV_logo.png" },
-            { name: "Maasranga", id: "UC86V9mG32I8mO6pP-7C7X4w", img: "https://upload.wikimedia.org/wikipedia/en/c/c8/Maasranga_Television_logo.png" },
-            { name: "Bangla Vision", id: "UCb_I0qU_V2V7P7oA1S7Y5Rg", img: "https://upload.wikimedia.org/wikipedia/en/a/a2/Banglavision_logo.png" },
-            { name: "Asian TV", id: "UCvR9N7Pj_pE1m6tE6p7jI_g", img: "https://upload.wikimedia.org/wikipedia/en/4/43/Asian_TV_logo.png" },
-            { name: "Islamic TV", id: "UC_uVp9iG0xT5-J0G8nO7S5g", img: "https://via.placeholder.com/150/FFFFFF/000000?text=Islamic+TV" },
-            { name: "Peace TV", id: "UCqG2S1098O8S7S9mO_O6V8g", img: "https://upload.wikimedia.org/wikipedia/en/1/1a/Peace_TV_logo.png" },
-            { name: "Star Sports 1", id: "UCId9Xm8E9G5Ww0P_E6UoP9A", img: "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Star_Sports_logo.svg/200px-Star_Sports_logo.svg.png" },
-            { name: "Star Jalsha", id: "UCBfIunZ5u-v5qU5kI0u_E7Q", img: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Star_Jalsha_logo.png/150px-Star_Jalsha_logo.png" },
-            { name: "Zee Bangla", id: "UC7Z5lW2nKx-W070oQ7C7-Yg", img: "https://upload.wikimedia.org/wikipedia/en/thumb/2/25/Zee_Bangla_2017_Logo.png/150px-Zee_Bangla_2017_Logo.png" },
-            { name: "ESPN", id: "UCiWLfBeV-xvI-eGeS1n-3Sg", img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/ESPN_logo.svg" },
-            { name: "Zoom", id: "UCqG2S1098O8S7S9mO_O6V8g", img: "https://via.placeholder.com/150/FFFFFF/000000?text=Zoom" },
-            { name: "S Bangla", id: "UCqG2S1098O8S7S9mO_O6V8g", img: "https://via.placeholder.com/150/FFFFFF/000000?text=S+Bangla" }
+        const news = [
+            { name: "JAMUNA TV", id: "UC_u6v2At6p3-w8YvT2Zpndw" },
+            { name: "SOMOY TV", id: "UCIsP6W279isZAsD_CAdWOTw" },
+            { name: "CHANNEL 24", id: "UCXvL_n_6UunYvO0Y9B8A88g" },
+            { name: "EKATTOR TV", id: "UCd7N7G7_A2YOfpYp-7uK3kg" },
+            { name: "INDEPENDENT", id: "UCpP0S9N-uS7M9y8v_K6v4tQ" },
+            { name: "NEWS 24", id: "UCG_UshSOn0HCHV_0q8X7Wdg" },
+            { name: "DBC NEWS", id: "UC3-C7oKNoX7vD9pWl_3X5_A" },
+            { name: "BTV LIVE", id: "UCf0fD3hD39Y10f_yXp0n_3A" }
         ];
 
-        const container = document.getElementById('channel-grid');
-        const player = document.getElementById('tv-player');
+        const entertainment = [
+            { name: "NTV LIVE", id: "UCPn6l09_pXpL4_4hXF6XlJQ" },
+            { name: "DEEPTO TV", id: "UC4pA57I6W_L972r7_H0Xv8w" },
+            { name: "MAASRANGA", id: "UC86V9mG32I8mO6pP-7C7X4w" },
+            { name: "STAR JALSHA", id: "UCBfIunZ5u-v5qU5kI0u_E7Q" },
+            { name: "ZEE BANGLA", id: "UC7Z5lW2nKx-W070oQ7C7-Yg" },
+            { name: "PEACE TV", id: "UCqG2S1098O8S7S9mO_O6V8g" }
+        ];
 
-        // কার্ডগুলো জেনারেট করা
-        channelData.forEach(channel => {
-            const card = document.createElement('div');
-            card.className = 'channel-card';
-            card.innerHTML = `<img src="${channel.img}" alt="${channel.name}"><p>${channel.name}</p>`;
-            card.onclick = () => {
-                // সরাসরি চ্যানেলের লাইভ ফিড লোড করা
-                player.src = `https://www.youtube.com/embed/live_stream?channel=${channel.id}&autoplay=1`;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-            container.appendChild(card);
-        });
+        const sports = [
+            { name: "T SPORTS", id: "UCv_v96YatZUpKqU7f0mO0_Q" },
+            { name: "STAR SPORTS", id: "UCId9Xm8E9G5Ww0P_E6UoP9A" },
+            { name: "ESPN LIVE", id: "UCiWLfBeV-xvI-eGeS1n-3Sg" },
+            { name: "A SPORTS", id: "UC_uVp9iG0xT5-J0G8nO7S5g" }
+        ];
+
+        function createCards(data, containerId) {
+            const container = document.getElementById(containerId);
+            data.forEach(ch => {
+                const card = document.createElement('div');
+                card.className = 'channel-card';
+                card.innerHTML = `<span class="logo-text">📺</span><p>${ch.name}</p>`;
+                card.onclick = () => {
+                    document.getElementById('tv-player').src = `https://www.youtube.com/embed/live_stream?channel=${ch.id}&autoplay=1`;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+                container.appendChild(card);
+            });
+        }
+
+        createCards(news, 'news-grid');
+        createCards(entertainment, 'ent-grid');
+        createCards(sports, 'sports-grid');
     </script>
 </body>
 </html>
