@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bangla View Zone</title>
+
+<!-- admin-data.js connect -->
+<script src="admin-data.js"></script>
+
+<style>
+body{
+  margin:0;
+  font-family:sans-serif;
+  background:#0f2027;
+  color:white;
+}
+.header{
+  text-align:center;
+  padding:12px;
+  font-size:22px;
+  font-weight:bold;
+}
+.search{
+  padding:10px;
+}
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+}
+.tabs{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  overflow:auto;
+}
+.tab{
+  background:#203a43;
+  padding:8px 12px;
+  border-radius:20px;
+  cursor:pointer;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:10px;
+}
+.card{
+  background:#203a43;
+  padding:10px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+}
+.card img{
+  width:60px;
+}
+iframe{
+  width:100%;
+  height:220px;
+  border:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">📺 Bangla View Zone</div>
+
+<div class="search">
+<input type="text" placeholder="Search channel..." onkeyup="searchChannel(this.value)">
+</div>
+
+<div class="tabs">
+<div class="tab" onclick="load('news')">📰 News</div>
+<div class="tab" onclick="load('sports')">⚽ Sports</div>
+<div class="tab" onclick="load('islamic')">🕌 Islamic</div>
+</div>
+
+<iframe id="player"></iframe>
+
+<div id="list" class="grid"></div>
+
+<script>
+
+function play(link){
+ document.getElementById("player").src = link;
+}
+
+function load(cat){
+ let html="";
+ channels.filter(c=>c.cat==cat).forEach(c=>{
+ html+=`<div class="card" onclick="play('${c.link}')">
+ <img src="${c.img}"><br>${c.name}</div>`;
+ });
+ document.getElementById("list").innerHTML=html;
+}
+
+function searchChannel(val){
+ let html="";
+ channels.filter(c=>c.name.toLowerCase().includes(val.toLowerCase()))
+ .forEach(c=>{
+ html+=`<div class="card" onclick="play('${c.link}')">
+ <img src="${c.img}"><br>${c.name}</div>`;
+ });
+ document.getElementById("list").innerHTML=html;
+}
+
+</script>
+
+</body>
+</html>
